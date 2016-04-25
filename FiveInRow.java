@@ -24,11 +24,7 @@ public class FiveInRow extends JFrame{
 	private static Map<JButton, int[]> mapOfButtonsPlusItsPositionInArray = new HashMap<JButton, int[]>();
 	private static ArrayList<JButton> arrayOfButtons = new ArrayList<JButton>();
 	private int[][] arrayOfAlreadyPushedButtons;
-//	private int columnsQuantity=15, rowsQuantity=14;
 	private int columnsQuantity=25, rowsQuantity=24;
-
-
-
 	
 	FiveInRow(){
 		super("Five In Row");
@@ -36,13 +32,12 @@ public class FiveInRow extends JFrame{
 		
 		arrayOfAlreadyPushedButtons=new int[columnsQuantity+2][rowsQuantity+2];
 		
-		ActionListener bAction = new action(); //остальные кнопки такие как Result, Clear
+		ActionListener bAction = new action(); //other buttons like Result, Clear
 		jLabelForResult=new JLabel("LETS GO! Please put  ");
 		jLabelForResult.setFont(new Font("Arial Bold",0,16));
 		jLabelForResultColor=new JLabel("      ");
 		jLabelForResultColor.setBorder(BorderFactory.createLineBorder(Color.RED));
-		
-		
+				
 		new JLabel("Step: ");
 		
 		topPanel=new JPanel();
@@ -53,16 +48,13 @@ public class FiveInRow extends JFrame{
 		mainPanel.setLayout(mainGL);
 		
 		topPanel.add(jLabelForResult);
-		topPanel.add(jLabelForResultColor);	
-		
+		topPanel.add(jLabelForResultColor);			
 
 			int positionX,positionY,buttonNumber=0;
 			
 	        for(int row=1; row<=rowsQuantity;row++){
 		        for(int column=1; column<=columnsQuantity;column++){
-
 		        	buttonNumber++;
-
 					JButton btn = new JButton();
 			        btn.addActionListener(bAction);
 			        nameOfCurrentButton="B"+buttonNumber;
@@ -74,18 +66,15 @@ public class FiveInRow extends JFrame{
 		        	mapOfButtonsPlusItsPositionInArray.put(btn, new int[]{positionX,positionY});
 		        	mainPanel.add(btn);     	        
 		        }
-	        }
-		
+	        }		
 		getContentPane().add(topPanel,"North");
 		getContentPane().add(mainPanel);		
 
-		setResizable(false); // Запретить изменять размер фрейма
-		setSize(650,650); // задаём размер фрейма
-		setVisible(true); //отобразить фрейм
-		setLocationRelativeTo(null); //расположение фрейма в центре окна
-		
-	}
-	
+		setResizable(false);
+		setSize(650,650);
+		setVisible(true);
+		setLocationRelativeTo(null);		
+	}	
 	
 	public class action implements ActionListener{
 
@@ -107,7 +96,6 @@ public class FiveInRow extends JFrame{
 					performCheck(activeButton,2);
 				}
 				System.out.println("Step: "+count+";"+" Current button: "+activeButton.getName()+";   Position: x"+posX+" y"+posY);
-//				activeButton.setFont(new Font("Arial Bold",0,20));
 			}
 		}
 	}
@@ -129,8 +117,6 @@ public class FiveInRow extends JFrame{
 				else winner(pointerXorY);
 			else winner(pointerXorY);
 		else winner(pointerXorY);
-					
-	
 	}
 
 	private boolean checkLeftRight(int pointerXorY, int posX, int posY){
@@ -229,8 +215,6 @@ public class FiveInRow extends JFrame{
 		
 		return false;
 	}
-
-
 		
 	private void winner(int pointerXorY){
 		String win;
@@ -251,18 +235,10 @@ public class FiveInRow extends JFrame{
 			if(arrayOfAlreadyPushedButtons[findXofPressedButton][findYofPressedButton]!=1 && 
 			   arrayOfAlreadyPushedButtons[findXofPressedButton][findYofPressedButton]!=2){
 				jBErase.setBackground(Color.LIGHT_GRAY);
-			}
-								
-		}
-		
+			}								
+		}		
 	}
-	
-	
-	
 	public static void main(String[] args){
 		new FiveInRow();
-		
-		
 	}
-
 }
